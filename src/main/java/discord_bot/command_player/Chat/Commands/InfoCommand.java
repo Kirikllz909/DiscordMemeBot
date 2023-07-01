@@ -1,9 +1,6 @@
 package discord_bot.command_player.Chat.Commands;
 
 public class InfoCommand extends Command {
-    public String getDescription() {
-        return this.description;
-    }
 
     public InfoCommand() {
         super("!info",

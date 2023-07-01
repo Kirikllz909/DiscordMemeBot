@@ -5,6 +5,10 @@ public abstract class Command {
     protected String description;
     protected String[] args;
 
+    public String getDescription() {
+        return this.description;
+    }
+
     Command(String name, String description, String[] args) {
         this.name = name;
         this.description = description;
