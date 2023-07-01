@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 
 import discord_bot.command_player.Chat.Commands.Command;
-import discord_bot.command_player.Chat.CommandsFactories.CommandFactory;
-import discord_bot.command_player.Chat.CommandsFactories.DefaultCommandFactory;
+import discord_bot.command_player.Chat.Commands.CommandsFactories.CommandFactory;
+import discord_bot.command_player.Chat.Commands.CommandsFactories.UnknownCommandFactory;
 
 @Configuration
 public class CommandGenerator<T extends Command> {
@@ -15,7 +15,7 @@ public class CommandGenerator<T extends Command> {
     @Autowired
     List<CommandFactory<T>> commandFactories;
 
-    DefaultCommandFactory defaultFactory = new DefaultCommandFactory();
+    UnknownCommandFactory unknownFactory = new UnknownCommandFactory();
 
     public T generateCommand(String commandName) {
         for (CommandFactory<T> commandFactory : commandFactories) {
@@ -24,6 +24,6 @@ public class CommandGenerator<T extends Command> {
                 return generatedCommand;
             }
         }
-        return (T) defaultFactory.createCommand();
+        return (T) unknownFactory.createCommand();
     }
 }
