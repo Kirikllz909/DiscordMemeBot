@@ -1,4 +1,4 @@
-package discord_bot.command_player.Chat.CommandsListeners;
+package discord_bot.command_player.Chat.Commands.CommandsListeners;
 
 import org.springframework.stereotype.Service;
 
