@@ -1,4 +1,4 @@
-package discord_bot.command_player.Chat.CommandsFactories;
+package discord_bot.command_player.Chat.Commands.CommandsFactories;
 
 import discord_bot.command_player.Chat.Commands.Command;
 
