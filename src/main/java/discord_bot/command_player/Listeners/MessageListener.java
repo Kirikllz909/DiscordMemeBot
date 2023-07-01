@@ -16,11 +16,14 @@ public abstract class MessageListener<T extends Command> {
     @Autowired
     List<CommandListener<T>> listeners;
 
+    @Autowired
+    CommandGenerator commandGenerator;
+
     public Mono<Void> processCommand(Message eventMessage) {
         if (eventMessage.getAuthor().map(user -> !user.isBot()).orElse(false)) {
             if (eventMessage.getContent().length() > 0 && eventMessage.getContent().charAt(0) == '!') {
                 for (CommandListener<T> listener : listeners) {
-                    if (CommandGenerator.generateCommand(CommandParser.getCommandName(eventMessage))
+                    if (commandGenerator.generateCommand(CommandParser.getCommandName(eventMessage))
                             .getClass() == listener.getCommandType())
                         return listener.processCommand(eventMessage, CommandParser.getCommandArgs(eventMessage));
                 }
