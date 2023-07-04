@@ -23,6 +23,8 @@ public class JoinCommandListener implements CommandListener<JoinCommand> {
 
     @Override
     public Mono<Void> processCommand(Message msg, String[] args) {
+        BotConfiguration.getGuildAudioManager()
+                .setVoiceChannel(getMember(msg).getVoiceState().block().getChannel().block());
         return Mono.justOrEmpty(getMember(msg))
                 .flatMap(Member::getVoiceState)
                 .flatMap(VoiceState::getChannel)
