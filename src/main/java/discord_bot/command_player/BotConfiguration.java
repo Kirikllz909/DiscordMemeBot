@@ -9,15 +9,26 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import discord4j.common.util.Snowflake;
 import discord4j.core.DiscordClientBuilder;
 import discord4j.core.GatewayDiscordClient;
 import discord4j.core.event.domain.Event;
 
 import discord_bot.command_player.Listeners.EventListener;
+import discord_bot.command_player.Music.GuildAudioManager;
 
 @Configuration
 public class BotConfiguration {
     private static final Logger log = LoggerFactory.getLogger(BotConfiguration.class);
+    private static GuildAudioManager guildAudioManager;
+
+    public static void setGuildAudioManager(Snowflake id) {
+        guildAudioManager = guildAudioManager.of(id);
+    }
+
+    public static GuildAudioManager getGuildAudioManager() {
+        return guildAudioManager;
+    }
 
     @Value("${token}")
     private String token;
