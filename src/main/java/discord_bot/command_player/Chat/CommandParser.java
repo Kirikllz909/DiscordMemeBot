@@ -11,6 +11,6 @@ public class CommandParser {
 
     public static String[] getCommandArgs(Message msg) {
         String[] args = msg.getContent().split(" ");
-        return args.length == 1 ? Arrays.copyOfRange(args, 1, args.length) : null;
+        return args.length > 1 ? Arrays.copyOfRange(args, 1, args.length) : null;
     }
 }
