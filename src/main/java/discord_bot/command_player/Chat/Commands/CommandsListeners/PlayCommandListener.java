@@ -5,7 +5,7 @@ import java.util.concurrent.Future;
 import org.springframework.stereotype.Service;
 
 import discord4j.core.object.entity.Message;
-import discord_bot.command_player.Chat.Commands.InfoCommand;
+import discord_bot.command_player.Chat.MessagePrinter;
 import discord_bot.command_player.Chat.Commands.PlayCommand;
 import discord_bot.command_player.Music.PlayerManager;
 import discord_bot.command_player.Music.TrackLoadingHandler;
@@ -31,10 +31,7 @@ public class PlayCommandListener implements CommandListener<PlayCommand> {
     @Override
     public Mono<Void> processCommand(Message message, String[] args) {
         if (args.length == 0) {
-            InfoCommand cmd = new InfoCommand();
-            return Mono.just(message).flatMap(Message::getChannel)
-                    .flatMap(channel -> channel.createMessage("There is no link to the song"))
-                    .then();
+            return MessagePrinter.printMessage(message, "There is no link to the song");
         }
         JoinCommandListener joinCommandListener = new JoinCommandListener();
         Mono<Void> afterJoining = joinCommandListener.processCommand(message, args);
@@ -47,8 +44,7 @@ public class PlayCommandListener implements CommandListener<PlayCommand> {
                 return futureForLoading.get();
             } catch (Exception e) {
                 success = false;
-                return Mono.just(message).flatMap(Message::getChannel)
-                        .flatMap(channel -> channel.createMessage("The playlist does not exist")).then().block();
+                return MessagePrinter.printMessage(message, "The playlist does not exist").then().block();
             }
         }));
     }
