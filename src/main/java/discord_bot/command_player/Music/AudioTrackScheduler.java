@@ -43,8 +43,9 @@ public class AudioTrackScheduler extends AudioEventAdapter {
     return playing;
   }
 
-  public boolean skip() {
-    return !queue.isEmpty() && play(queue.remove(0), true);
+  public SkipDetails skip() {
+    AudioTrack skippedTrack = queue.remove(0);
+    return new SkipDetails((!queue.isEmpty() && play(skippedTrack, true)), skippedTrack);
   }
 
   @Override
