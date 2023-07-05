@@ -6,6 +6,7 @@ import discord4j.core.object.entity.Message;
 import discord4j.core.object.entity.channel.VoiceChannel;
 import discord4j.voice.VoiceConnection;
 import discord_bot.command_player.BotConfiguration;
+import discord_bot.command_player.Chat.MessagePrinter;
 import discord_bot.command_player.Chat.Commands.StopCommand;
 import reactor.core.publisher.Mono;
 
@@ -26,8 +27,6 @@ public class StopCommandListener implements CommandListener<StopCommand> {
             BotConfiguration.getGuildAudioManager().getScheduler().removeAllFromQueue();
             return connection.disconnect();
         } else
-            return Mono.just(message).flatMap(Message::getChannel)
-                    .flatMap(channel -> channel.createMessage("Bot isn't connected to any of voice channels"))
-                    .then();
+            return MessagePrinter.printMessage(message, "Bot isn't connected to any of voice channels");
     }
 }
