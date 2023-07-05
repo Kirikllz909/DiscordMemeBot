@@ -3,10 +3,11 @@ package discord_bot.command_player.Chat.Commands.CommandsListeners;
 import org.springframework.stereotype.Service;
 
 import discord4j.core.object.entity.Message;
+import discord4j.core.object.entity.channel.VoiceChannel;
+import discord4j.voice.VoiceConnection;
+import discord_bot.command_player.BotConfiguration;
 import discord_bot.command_player.Chat.Commands.StopCommand;
 import reactor.core.publisher.Mono;
-
-//TODO: leave the channel and remove all from queue
 
 @Service
 public class StopCommandListener implements CommandListener<StopCommand> {
@@ -18,6 +19,15 @@ public class StopCommandListener implements CommandListener<StopCommand> {
 
     @Override
     public Mono<Void> processCommand(Message message, String[] args) {
-        return Mono.just(0).then();
+
+        VoiceChannel voiceChannel = (VoiceChannel) BotConfiguration.getGuildAudioManager().getVoiceChannel();
+        if (voiceChannel != null) {
+            VoiceConnection connection = voiceChannel.getVoiceConnection().block();
+            BotConfiguration.getGuildAudioManager().getScheduler().removeAllFromQueue();
+            return connection.disconnect();
+        } else
+            return Mono.just(message).flatMap(Message::getChannel)
+                    .flatMap(channel -> channel.createMessage("Bot isn't connected to any of voice channels"))
+                    .then();
     }
 }
