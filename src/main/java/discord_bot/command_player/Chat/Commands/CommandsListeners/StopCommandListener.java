@@ -8,6 +8,7 @@ import discord4j.voice.VoiceConnection;
 import discord_bot.command_player.BotConfiguration;
 import discord_bot.command_player.Chat.MessagePrinter;
 import discord_bot.command_player.Chat.Commands.StopCommand;
+import discord_bot.command_player.Music.AudioTrackScheduler;
 import reactor.core.publisher.Mono;
 
 @Service
@@ -24,7 +25,9 @@ public class StopCommandListener implements CommandListener<StopCommand> {
         VoiceChannel voiceChannel = (VoiceChannel) BotConfiguration.getGuildAudioManager().getVoiceChannel();
         if (voiceChannel != null) {
             VoiceConnection connection = voiceChannel.getVoiceConnection().block();
-            BotConfiguration.getGuildAudioManager().getScheduler().removeAllFromQueue();
+            AudioTrackScheduler scheduler = BotConfiguration.getGuildAudioManager().getScheduler();
+            scheduler.removeAllFromQueue();
+            scheduler.setCurrentTrack(null);
             return connection.disconnect();
         } else
             return MessagePrinter.printMessage(message, "Bot isn't connected to any of voice channels");
