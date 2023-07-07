@@ -1,4 +1,4 @@
-package discord_bot.command_player.Chat.Commands;
+package discord_bot.command_player.Chat.Commands.CommandsTypes;
 
 public class QueueCommand extends Command {
     public QueueCommand() {

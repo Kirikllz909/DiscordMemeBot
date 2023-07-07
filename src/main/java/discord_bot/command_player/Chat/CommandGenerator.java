@@ -5,9 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 
-import discord_bot.command_player.Chat.Commands.Command;
 import discord_bot.command_player.Chat.Commands.CommandsFactories.CommandFactory;
 import discord_bot.command_player.Chat.Commands.CommandsFactories.UnknownCommandFactory;
+import discord_bot.command_player.Chat.Commands.CommandsTypes.Command;
 
 @Configuration
 public class CommandGenerator<T extends Command> {

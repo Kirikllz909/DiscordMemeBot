@@ -4,7 +4,7 @@ import org.springframework.stereotype.Service;
 
 import discord4j.core.object.entity.Message;
 import discord_bot.command_player.Chat.MessagePrinter;
-import discord_bot.command_player.Chat.Commands.UnknownCommand;
+import discord_bot.command_player.Chat.Commands.CommandsTypes.UnknownCommand;
 import reactor.core.publisher.Mono;
 
 @Service

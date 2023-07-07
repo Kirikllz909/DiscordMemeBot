@@ -7,13 +7,12 @@ import org.springframework.stereotype.Service;
 import discord4j.core.object.entity.Message;
 import discord_bot.command_player.BotConfiguration;
 import discord_bot.command_player.Chat.MessagePrinter;
-import discord_bot.command_player.Chat.Commands.PlayCommand;
+import discord_bot.command_player.Chat.Commands.CommandsTypes.PlayCommand;
 import discord_bot.command_player.Music.PlayerManager;
 import discord_bot.command_player.Music.TrackLoadingHandler;
 import reactor.core.publisher.Mono;
 
 //TODO: after !play command return message track added to playlist
-//TODO: create a leaving channel after long delay and there is no tracks for like 1 minute
 
 @Service
 public class PlayCommandListener implements CommandListener<PlayCommand> {

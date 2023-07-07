@@ -6,7 +6,7 @@ import discord4j.core.object.VoiceState;
 import discord4j.core.object.entity.Member;
 import discord4j.core.object.entity.Message;
 import discord_bot.command_player.BotConfiguration;
-import discord_bot.command_player.Chat.Commands.JoinCommand;
+import discord_bot.command_player.Chat.Commands.CommandsTypes.JoinCommand;
 import reactor.core.publisher.Mono;
 
 @Service

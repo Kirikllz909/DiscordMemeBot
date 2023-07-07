@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import discord4j.core.object.entity.Message;
 import discord_bot.command_player.BotConfiguration;
 import discord_bot.command_player.Chat.MessagePrinter;
-import discord_bot.command_player.Chat.Commands.SkipCommand;
+import discord_bot.command_player.Chat.Commands.CommandsTypes.SkipCommand;
 import discord_bot.command_player.Music.SkipDetails;
 import reactor.core.publisher.Mono;
 

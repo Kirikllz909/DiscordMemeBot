@@ -7,7 +7,7 @@ import discord4j.core.object.entity.channel.VoiceChannel;
 import discord4j.voice.VoiceConnection;
 import discord_bot.command_player.BotConfiguration;
 import discord_bot.command_player.Chat.MessagePrinter;
-import discord_bot.command_player.Chat.Commands.StopCommand;
+import discord_bot.command_player.Chat.Commands.CommandsTypes.StopCommand;
 import discord_bot.command_player.Music.AudioTrackScheduler;
 import reactor.core.publisher.Mono;
 
