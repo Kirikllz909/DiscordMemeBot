@@ -36,6 +36,8 @@ public class AudioTrackScheduler extends AudioEventAdapter {
   }
 
   public void removeAllFromQueue() {
+    player.stopTrack();
+    setCurrentTrack(null);
     queue.clear();
   }
 

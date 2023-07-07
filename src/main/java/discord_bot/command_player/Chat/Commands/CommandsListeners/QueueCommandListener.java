@@ -9,7 +9,7 @@ import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
 import discord4j.core.object.entity.Message;
 import discord_bot.command_player.BotConfiguration;
 import discord_bot.command_player.Chat.MessagePrinter;
-import discord_bot.command_player.Chat.Commands.QueueCommand;
+import discord_bot.command_player.Chat.Commands.CommandsTypes.QueueCommand;
 import discord_bot.command_player.Music.AudioTrackScheduler;
 import reactor.core.publisher.Mono;
 

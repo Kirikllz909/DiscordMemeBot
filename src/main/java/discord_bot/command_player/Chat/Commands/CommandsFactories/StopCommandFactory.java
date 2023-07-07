@@ -2,7 +2,7 @@ package discord_bot.command_player.Chat.Commands.CommandsFactories;
 
 import org.springframework.stereotype.Service;
 
-import discord_bot.command_player.Chat.Commands.StopCommand;
+import discord_bot.command_player.Chat.Commands.CommandsTypes.StopCommand;
 
 @Service
 public class StopCommandFactory implements CommandFactory<StopCommand> {

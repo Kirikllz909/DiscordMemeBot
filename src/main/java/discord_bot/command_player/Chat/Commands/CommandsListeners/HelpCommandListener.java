@@ -3,7 +3,7 @@ package discord_bot.command_player.Chat.Commands.CommandsListeners;
 import org.springframework.stereotype.Service;
 
 import discord4j.core.object.entity.Message;
-import discord_bot.command_player.Chat.Commands.HelpCommand;
+import discord_bot.command_player.Chat.Commands.CommandsTypes.HelpCommand;
 import reactor.core.publisher.Mono;
 
 @Service

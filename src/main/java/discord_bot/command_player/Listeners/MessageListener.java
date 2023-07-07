@@ -8,8 +8,8 @@ import discord4j.core.object.entity.Message;
 import discord_bot.command_player.BotConfiguration;
 import discord_bot.command_player.Chat.CommandGenerator;
 import discord_bot.command_player.Chat.CommandParser;
-import discord_bot.command_player.Chat.Commands.Command;
 import discord_bot.command_player.Chat.Commands.CommandsListeners.CommandListener;
+import discord_bot.command_player.Chat.Commands.CommandsTypes.Command;
 import reactor.core.publisher.Mono;
 
 public abstract class MessageListener<T extends Command> {

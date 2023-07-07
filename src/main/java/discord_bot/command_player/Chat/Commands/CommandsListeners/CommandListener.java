@@ -4,7 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import discord4j.core.object.entity.Message;
-import discord_bot.command_player.Chat.Commands.Command;
+import discord_bot.command_player.Chat.Commands.CommandsTypes.Command;
 import reactor.core.publisher.Mono;
 
 public interface CommandListener<T extends Command> {
