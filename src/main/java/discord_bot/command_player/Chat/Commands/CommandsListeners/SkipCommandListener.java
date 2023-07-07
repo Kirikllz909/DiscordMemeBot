@@ -22,7 +22,7 @@ public class SkipCommandListener implements CommandListener<SkipCommand> {
         SkipDetails details = BotConfiguration.getGuildAudioManager().getScheduler().skip();
         if (details.getIsSkipped())
             return MessagePrinter.printMessage(message,
-                    "Track: " + details.getSkippedTrack().getInfo().title + " is skipped");
+                    "Track: **" + details.getSkippedTrack().getInfo().title + "** is skipped");
         else
             return MessagePrinter.printMessage(message, "Unable to skip track");
     }
