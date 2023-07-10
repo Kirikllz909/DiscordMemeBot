@@ -12,12 +12,8 @@ import discord_bot.command_player.Music.PlayerManager;
 import discord_bot.command_player.Music.TrackLoadingHandler;
 import reactor.core.publisher.Mono;
 
-//TODO: after !play command return message track added to playlist
-
 @Service
 public class PlayCommandListener implements CommandListener<PlayCommand> {
-
-    private boolean success = true;
 
     @Override
     public Class<PlayCommand> getCommandType() {
@@ -26,7 +22,7 @@ public class PlayCommandListener implements CommandListener<PlayCommand> {
 
     @Override
     public Mono<Void> processCommand(Message message, String[] args) {
-
+        BotConfiguration.getGuildAudioManager().setMessageChannel(message.getChannel().block());
         if (args == null || args.length == 0) {
             return MessagePrinter.printMessage(message, "There is no link to the song");
         }
