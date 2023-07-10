@@ -9,6 +9,11 @@ import com.sedmelluq.discord.lavaplayer.player.event.AudioEventAdapter;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrackEndReason;
 
+import discord4j.core.object.entity.channel.MessageChannel;
+import discord_bot.command_player.BotConfiguration;
+import discord_bot.command_player.Chat.MessagePrinter;
+import reactor.core.publisher.Mono;
+
 public class AudioTrackScheduler extends AudioEventAdapter {
 
   private AudioTrack currentTrack;
@@ -46,6 +51,8 @@ public class AudioTrackScheduler extends AudioEventAdapter {
   }
 
   public boolean play(AudioTrack track, boolean force) {
+    if (track == currentTrack)
+      player.stopTrack();
     boolean playing = player.startTrack(track, !force);
 
     if (!playing) {
@@ -59,7 +66,7 @@ public class AudioTrackScheduler extends AudioEventAdapter {
   public SkipDetails skip() {
     if (!queue.isEmpty()) {
       AudioTrack nextTrack = queue.remove(0);
-      return new SkipDetails((!queue.isEmpty() && play(nextTrack, true)), nextTrack);
+      return new SkipDetails(play(nextTrack, true), nextTrack);
     } else {
       player.stopTrack();
       AudioTrack skippedTrack = currentTrack;
@@ -75,5 +82,13 @@ public class AudioTrackScheduler extends AudioEventAdapter {
     if (endReason.mayStartNext) {
       skip();
     }
+  }
+
+  @Override
+  public void onTrackStart(AudioPlayer player, AudioTrack track) {
+    MessageChannel channel = BotConfiguration.getGuildAudioManager().getMessageChannel();
+    if (channel != null)
+      Mono.just(0).then(MessagePrinter.printMessageInChannel(channel,
+          "Now playing: **" + track.getInfo().title + "** by: **" + track.getInfo().author + "**")).block();
   }
 }
