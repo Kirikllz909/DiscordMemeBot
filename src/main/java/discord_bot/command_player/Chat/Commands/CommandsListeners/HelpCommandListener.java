@@ -12,6 +12,7 @@ public class HelpCommandListener implements CommandListener<HelpCommand> {
         return HelpCommand.class;
     }
 
+    @Override
     public Mono<Void> processCommand(Message msg, String[] args) {
         return Mono.just(0).then();
     }
