@@ -30,7 +30,7 @@ public class QueueCommandListener implements CommandListener<QueueCommand> {
         String tracksInfo = "There aren't any songs in the queue";
 
         if (currentTrack != null) {
-            tracksInfo = "Track #1: " + currentTrack.getInfo().title + "\n";
+            tracksInfo = "Track #1: " + currentTrack.getInfo().title + " by: " + currentTrack.getInfo().author + "\n";
         }
 
         if (songsList.size() == 0) {
@@ -40,7 +40,8 @@ public class QueueCommandListener implements CommandListener<QueueCommand> {
         int k = 2;
         for (AudioTrack track : songsList) {
             {
-                tracksInfo += "Track #" + k + ": " + track.getInfo().title + "\n";
+                tracksInfo += "Track #" + k + ": " + track.getInfo().title + " by: " + track.getInfo().author
+                        + "\n";
                 k++;
             }
         }

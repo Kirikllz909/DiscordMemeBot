@@ -7,6 +7,7 @@ import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
 
 import discord4j.common.util.Snowflake;
 import discord4j.core.object.entity.channel.AudioChannel;
+import discord4j.core.object.entity.channel.MessageChannel;
 
 public class GuildAudioManager {
     private static final Map<Snowflake, GuildAudioManager> MANAGERS = new ConcurrentHashMap<>();
@@ -19,6 +20,7 @@ public class GuildAudioManager {
     private final AudioTrackScheduler scheduler;
     private final LavaPlayerAudioProvider provider;
     private AudioChannel voiceChannel;
+    private MessageChannel messageChannel;
 
     private GuildAudioManager() {
         player = PlayerManager.PLAYER_MANAGER.createPlayer();
@@ -46,5 +48,13 @@ public class GuildAudioManager {
 
     public AudioChannel getVoiceChannel() {
         return this.voiceChannel;
+    }
+
+    public void setMessageChannel(MessageChannel messageChannel) {
+        this.messageChannel = messageChannel;
+    }
+
+    public MessageChannel getMessageChannel() {
+        return this.messageChannel;
     }
 }
